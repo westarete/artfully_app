@@ -86,11 +86,13 @@ Artfully requires the following environment variables to be set if they aren't e
 
 ### About delayed_job
 
-Artfully ships with `delayed_job` enabled.  If you do not have a Heroku worker turned on, you'll want ot disable delayed_jobs so that they run immediately.
+Artfully ships with `delayed_job` disabled.  If you do have a Heroku worker turned on, you'll want to enable delayed_jobs.
 
-To disable `delayed_job`, add this to `config/application.rb`
+To enable `delayed_job`, in `config/application.rb` change this line to read
 
-    Delayed::Worker.delay_jobs = false
+    Delayed::Worker.delay_jobs = true
+    
+__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.
 
 ### Push 
 
