@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808144442) do
+ActiveRecord::Schema.define(:version => 20120810165306) do
 
   create_table "actions", :force => true do |t|
     t.integer  "organization_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer  "subject_id"
     t.string   "subject_type"
     t.integer  "creator_id"
-    t.string   "old_mongo_id"
   end
 
   create_table "addresses", :force => true do |t|
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "old_mongo_id"
   end
 
   add_index "addresses", ["person_id"], :name => "index_addresses_on_person_id"
@@ -58,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.boolean "is_template"
     t.integer "event_id"
     t.integer "organization_id"
-    t.string  "old_mongo_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -92,7 +89,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "old_mongo_id"
     t.datetime "deleted_at"
     t.string   "contact_phone"
     t.string   "contact_email"
@@ -149,7 +145,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer  "show_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "old_mongo_id"
   end
 
   add_index "items", ["created_at"], :name => "index_items_on_created_at"
@@ -190,7 +185,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.datetime "updated_at"
     t.integer  "service_fee"
     t.string   "details"
-    t.string   "old_mongo_id"
     t.string   "type"
     t.string   "payment_method"
     t.text     "special_instructions"
@@ -221,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.boolean  "dummy"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "old_mongo_id"
     t.string   "person_type"
     t.string   "twitter_handle"
     t.string   "facebook_url"
@@ -247,7 +240,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer "capacity"
     t.integer "price"
     t.integer "chart_id"
-    t.string  "old_mongo_id"
     t.text    "description"
   end
 
@@ -263,7 +255,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.integer  "event_id"
     t.integer  "chart_id"
     t.integer  "organization_id"
-    t.string   "old_mongo_id"
   end
 
   add_index "shows", ["event_id"], :name => "index_shows_on_event_id"
@@ -298,7 +289,6 @@ ActiveRecord::Schema.define(:version => 20120808144442) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cart_id"
-    t.string   "old_mongo_id"
     t.integer  "section_id"
   end
 
