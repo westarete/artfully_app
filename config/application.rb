@@ -34,6 +34,9 @@ module ArtfullyApp
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
+    # Configure sensitive parameters which will be filtered from the log file.
+    config.filter_parameters += [:password, :password_confirmation, :card_number, :cvv]
+    
     config.after_initialize do 
       #Braintree config
       config.braintree.merchant_id    = ENV['BRAINTREE_MERCHANT_ID']   || 'your_merchant_id'
@@ -50,5 +53,9 @@ module ArtfullyApp
     end
     
     Delayed::Worker.delay_jobs = false
+    
+    RestfulMetrics::Client.async = true
+    RestfulMetrics::Client.disabled = true if ENV["RESTFUL_METRICS_APP"].blank?
+    RestfulMetrics::Client.set_credentials ENV["RESTFUL_METRICS_API_KEY"]
   end
 end
