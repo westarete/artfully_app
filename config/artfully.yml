@@ -1,4 +1,4 @@
-# ticket_fee: the fee applied to each ticket sale in CENTS. Put down 200 for a $2.00 ticket fee.
+# ticket_fee: the fee applied to each ticket in a transaction in CENTS. Put down 200 for a $2.00 ticket fee.
 
 ---
 development:
