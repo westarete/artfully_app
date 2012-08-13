@@ -94,6 +94,16 @@ To enable `delayed_job`, in `config/application.rb` change this line to read
     
 __Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.
 
+### Update the mailer
+
+In the file `config/environments/production.rb` change the value of `config.action_mailer.default_url_options` to match your hostname.
+
+    config.action_mailer.default_url_options={:host => 'myapp.herokuapp.com'}
+    
+or if you own your own domain
+    
+    config.action_mailer.default_url_options={:host => 'www.myexampletheater.com'}
+
 ### Push 
 
 Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-apps) for creating an app
