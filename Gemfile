@@ -12,7 +12,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'artfully_ose', :path => '../artful.ly/lib/artfully_ose'
+gem 'artfully_ose', '~> 2.0.0.rc2'
 gem 'thin'
 gem 'mysql2', '0.3.11'
 
