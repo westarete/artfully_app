@@ -16,3 +16,6 @@
 
 #Ignore solr
 /solr
+
+#Ignore generated schemas
+/db/migrate/*

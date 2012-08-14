@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
   artfully:
     page_title: "Artfully App"
+    
+    #This message will be displayed to users after a successful transaction.
+    checkout_message: ""

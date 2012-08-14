@@ -92,7 +92,7 @@ To enable `delayed_job`, in `config/application.rb` change this line to read
 
     Delayed::Worker.delay_jobs = true
     
-__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.
+__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.
 
 ### Update the mailer
 
@@ -115,6 +115,8 @@ Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-
 ### Setup the production database
 
     heroku run bundle exec rake db:migrate
+    
+Please note that you must first have run and comitted `bundle exec rake artfully_ose_engine:install:migrations` from the above steps
 
 ### Set environment variables
 
