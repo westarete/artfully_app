@@ -1,5 +1,7 @@
 # Artfully Open Source Edition
 
+Version 1.0.0.rc3
+
 An Open-source application to run your arts organization.  Features include:
 
 * Free and paid ticketing on the web

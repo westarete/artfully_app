@@ -45,7 +45,7 @@ GEM
     acts-as-taggable-on (2.1.1)
       rails
     arel (3.0.2)
-    artfully_ose (2.0.0.rc2)
+    artfully_ose (1.0.0.rc3)
       activemerchant
       activerecord-import (= 0.2.9)
       acts-as-taggable-on (~> 2.1.0)
@@ -244,7 +244,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  artfully_ose (~> 2.0.0.rc2)
+  artfully_ose (~> 1.0.0.rc3)
   coffee-rails (~> 3.2.1)
   jquery-rails
   mysql2 (= 0.3.11)
