@@ -123,6 +123,8 @@ Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-
 Before running this, you must have setup and configured a MySQL database.  If you databae is on Amazon's RDS, you'll have to enable that plugin on Heroku by running
 
     heroku addons:add amazon_rds
+    
+Then log in to your Heroku account and configure the Amazon RDS plugin with the proper connection string
 
 Otherwise, make sure you have edited, committed, and pushed your database.yml file
 
