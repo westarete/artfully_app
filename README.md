@@ -37,10 +37,17 @@ Make sure you have the following installed on your system
 * [Heroku cli](https://github.com/heroku/heroku/)
 * [Git](http://git-scm.com/)
 
+Also, before you begin you should set up your production MySQL database.
+
 ## Clone the app 
 
     git clone git@github.com:fracturedatlas/artfully_app.git
     cd artfully_app
+
+### Setup
+
+    gem install foreman
+    bundle install
 
 ## Database
 
@@ -54,11 +61,6 @@ Run the migrations
 ## Running Locally
 
 If you intend to do any custom development or testing, go ahead and set up Artfully locally on your machine.  If you have no interest in this, feel free to skip ahead to Deployment to Heroku
-
-### Setup
-
-    gem install foreman
-    bundle install
     
 Open a rails console and run
 
@@ -109,14 +111,22 @@ or if you own your own domain
 Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-apps) for creating an app
 
     heroku apps:create myapp
+    git add .
+    git commit -m "Prepping push to Heroku"
     git remote add heroku git@heroku.com:myapp.git
     git push heroku master
 
 ### Setup the production database
 
+Before running this, you must have setup and configured a MySQL database.  If you databae is on Amazon's RDS, you'll have to enable that plugin on Heroku by running
+
+    heroku addons:add amazon_rds
+
+Otherwise, make sure you have edited, committed, and pushed your database.yml file
+
     heroku run bundle exec rake db:migrate
     
-Please note that you must first have run and comitted `bundle exec rake artfully_ose_engine:install:migrations` from the above steps
+Please note that you must first have run and committed `bundle exec rake artfully_ose_engine:install:migrations` from the above steps
 
 ### Set environment variables
 
