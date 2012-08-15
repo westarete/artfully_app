@@ -19,3 +19,7 @@ gem 'mysql2', '0.3.11'
 group :development do
   gem 'sunspot_solr', '1.3.3'
 end
+
+group :production do
+    gem 'pg'
+end

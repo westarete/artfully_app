@@ -122,22 +122,11 @@ Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-
 Before running this, you must have setup and configured a MySQL database.  If you database is on Amazon's RDS, you'll have to enable that plugin on Heroku by running
 
     heroku addons:add amazon_rds
-    
-Then log in to your Heroku account and configure the Amazon RDS plugin with the proper connection string
+    heroku config:add DATABASE_URL=mysql2://username:password@url.ofyourdatabase.com/databaseName
 
 Otherwise, make sure you have edited, committed, and pushed your database.yml file
 
     heroku run bundle exec rake db:migrate
-    
-You'll also need to set the DATABASE_URL by hand
-
-    heroku config:add DATABASE_URL=mysql2://username:password@url.ofyourdatabase.com/databaseName
-    
-You'll have to install the pg gem in production to keep Heroku happy. Put this in your Gemfile and run `bundle install`, even if you're not using postgres:
-
-    group :production do
-        gem 'pg'
-    end
     
 Please note that you must first have run and committed `bundle exec rake artfully_ose_engine:install:migrations` from the above steps
 
