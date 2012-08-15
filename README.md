@@ -1,6 +1,6 @@
 # Artfully Open Source Edition
 
-Version 1.0.0.rc3
+Version 1.0.0.rc4
 
 An Open-source application to run your arts organization.  Features include:
 
