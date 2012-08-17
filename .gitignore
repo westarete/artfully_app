@@ -17,5 +17,3 @@
 
 #Ignore solr
 /solr
-
-Gemfile.lock
