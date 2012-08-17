@@ -12,7 +12,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.lck
 /tmp
 
 #Ignore solr
 /solr
+
+#Ignore generated schemas
+/db/migrate/*

@@ -1,36 +1,3 @@
-PATH
-  remote: ../artful.ly/lib/artfully_ose
-  specs:
-    artfully_ose (0.0.1)
-      activemerchant
-      activerecord-import (= 0.2.9)
-      acts-as-taggable-on (~> 2.1.0)
-      aws-sdk
-      bootstrap-will_paginate
-      braintree (~> 2.13.0)
-      cancan (= 1.6.7)
-      comma (= 3.0.3)
-      delayed_job (= 3.0.2)
-      delayed_job_active_record (= 0.3.2)
-      devise (= 2.0.4)
-      devise_invitable (= 1.0.2)
-      dynamic_form (= 1.1.4)
-      gibbon (= 0.3.5)
-      gravatar_image_tag
-      haml
-      mail (= 2.4.4)
-      paperclip (>= 2.5.0)
-      rails (~> 3.2.6)
-      restful_metrics (= 1.1.4)
-      s3 (>= 0.3.11)
-      set_watch_for (= 0.0.1)
-      sunspot_rails (= 1.3.3)
-      swiper (= 0.0.1)
-      transitions (= 0.0.11)
-      uuid (= 2.3.5)
-      validates_timeliness
-      will_paginate (~> 3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,10 +14,10 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.3)
-    active_utils (1.0.3)
+    active_utils (1.0.4)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.26.0)
+    activemerchant (1.27.0)
       active_utils (>= 1.0.2)
       activesupport (>= 2.3.11)
       builder (>= 2.0.0)
@@ -78,7 +45,37 @@ GEM
     acts-as-taggable-on (2.1.1)
       rails
     arel (3.0.2)
-    aws-sdk (1.6.1)
+    artfully_ose (1.0.0.rc3)
+      activemerchant
+      activerecord-import (= 0.2.9)
+      acts-as-taggable-on (~> 2.1.0)
+      aws-sdk
+      bootstrap-will_paginate
+      braintree (~> 2.13.0)
+      cancan (= 1.6.7)
+      comma (= 3.0.3)
+      delayed_job (= 3.0.2)
+      delayed_job_active_record (= 0.3.2)
+      devise (= 2.0.4)
+      devise_invitable (= 1.0.2)
+      devise_suspendable (= 0.6.1)
+      dynamic_form (= 1.1.4)
+      gibbon (= 0.3.5)
+      gravatar_image_tag
+      haml
+      mail (= 2.4.4)
+      paperclip (>= 2.5.0)
+      rails (~> 3.2.6)
+      restful_metrics (= 1.1.4)
+      s3 (>= 0.3.11)
+      set_watch_for (= 0.0.1)
+      sunspot_rails (= 1.3.3)
+      swiper (= 0.0.1)
+      transitions (= 0.0.11)
+      uuid (= 2.3.5)
+      validates_timeliness
+      will_paginate (~> 3.0)
+    aws-sdk (1.6.3)
       httparty (~> 0.7)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -113,6 +110,10 @@ GEM
     devise_invitable (1.0.2)
       devise (>= 2.0.0)
       rails (~> 3.0)
+    devise_suspendable (0.6.1)
+      devise
+      rails (>= 3.0.4)
+      warden
     dynamic_form (1.1.4)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -125,7 +126,7 @@ GEM
       json (> 1.4.0)
       rdoc
     gravatar_image_tag (1.1.3)
-    haml (3.1.6)
+    haml (3.1.7)
     hike (1.2.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -243,7 +244,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  artfully_ose!
+  artfully_ose (~> 1.0.0.rc3)
   coffee-rails (~> 3.2.1)
   jquery-rails
   mysql2 (= 0.3.11)

@@ -12,10 +12,14 @@ end
 
 gem 'jquery-rails'
 
-gem 'artfully_ose', :path => '../artful.ly/lib/artfully_ose'
+gem 'artfully_ose', '~> 1.0.0.rc4'
 gem 'thin'
 gem 'mysql2', '0.3.11'
 
 group :development do
   gem 'sunspot_solr', '1.3.3'
+end
+
+group :production do
+    gem 'pg'
 end

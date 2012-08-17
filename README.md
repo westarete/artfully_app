@@ -1,5 +1,7 @@
 # Artfully Open Source Edition
 
+Version 1.0.0.rc4
+
 An Open-source application to run your arts organization.  Features include:
 
 * Free and paid ticketing on the web
@@ -37,10 +39,17 @@ Make sure you have the following installed on your system
 * [Heroku cli](https://github.com/heroku/heroku/)
 * [Git](http://git-scm.com/)
 
+Also, before you begin you should set up your production MySQL database.
+
 ## Clone the app 
 
     git clone git@github.com:fracturedatlas/artfully_app.git
     cd artfully_app
+
+### Setup
+
+    gem install foreman
+    bundle install
 
 ## Database
 
@@ -54,11 +63,6 @@ Run the migrations
 ## Running Locally
 
 If you intend to do any custom development or testing, go ahead and set up Artfully locally on your machine.  If you have no interest in this, feel free to skip ahead to Deployment to Heroku
-
-### Setup
-
-    gem install foreman
-    bundle install
     
 Open a rails console and run
 
@@ -92,7 +96,7 @@ To enable `delayed_job`, in `config/application.rb` change this line to read
 
     Delayed::Worker.delay_jobs = true
     
-__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.
+__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.
 
 ### Update the mailer
 
@@ -109,12 +113,22 @@ or if you own your own domain
 Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-apps) for creating an app
 
     heroku apps:create myapp
-    git remote add heroku git@heroku.com:myapp.git
+    git add .
+    git commit -m "Prepping push to Heroku"
     git push heroku master
 
 ### Setup the production database
 
+Before running this, you must have setup and configured a MySQL database.  If you database is on Amazon's RDS, you'll have to enable that plugin on Heroku by running
+
+    heroku addons:add amazon_rds
+    heroku config:add DATABASE_URL=mysql2://username:password@url.ofyourdatabase.com/databaseName
+
+Otherwise, make sure you have edited, committed, and pushed your database.yml file
+
     heroku run bundle exec rake db:migrate
+    
+Please note that you must first have run and committed `bundle exec rake artfully_ose_engine:install:migrations` from the above steps
 
 ### Set environment variables
 
