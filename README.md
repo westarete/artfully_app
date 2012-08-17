@@ -85,6 +85,8 @@ Artful.ly OSE requires the following environment variables to be set if they are
     S3_BUCKET
     S3_ACCESS_KEY_ID
     S3_SECRET_ACCESS_KEY
+    
+    WEBSOLR_URL
 
 ## Deployment to Heroku
 
@@ -98,9 +100,15 @@ To enable `delayed_job`, in `config/application.rb` change this line to read
     
 __Please note__ that Artful.ly OSE depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.
 
-### Update the mailer
+### Sending email
 
-In the file `config/environments/production.rb` change the value of `config.action_mailer.default_url_options` to match your hostname.
+Artful.ly OSE __WILL NOT PROCESS TRANSACTIONS WITHOUT A VALID SMTP SETUP__ We will make this more flexible in a future release.
+
+A good option is to enable SendGrid.  SendGrid has a free usage tier which integrates with Heroku.  See the note in `Setup SendGrid` to enable SendGrid.  Artful.ly OSE will work with SendGrid without any modification necessary.
+
+Otherwise, you'll need to specify your smtp settings in `config/environments/production.rb` under `config.action_mailer.smtp_settings`
+
+Finaly, regardless of smtp provider, __YOU MUST__ edit the file `config/environments/production.rb` and change the value of `config.action_mailer.default_url_options` to match your hostname.
 
     config.action_mailer.default_url_options={:host => 'myapp.herokuapp.com'}
     
@@ -116,6 +124,14 @@ Follow the [Heroku instructions](https://devcenter.heroku.com/articles/creating-
     git add .
     git commit -m "Prepping push to Heroku"
     git push heroku master
+    
+### Setup SendGrid (Optional)
+
+If you're using SendGrid to send email, enable the starter plan with the following command:
+
+    heroku addons:add sendgrid:starter
+
+See the [SendGrid documentation](https://addons.heroku.com/sendgrid) for more information.
 
 ### Setup the production database
 
