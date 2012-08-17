@@ -1,4 +1,4 @@
-# Artfully Open Source Edition
+# Artful.ly Open Source Edition
 
 Version 1.0.0.rc4
 
@@ -18,11 +18,11 @@ And coming soon...
 
 # About
 
-Creating your own Artfully installation requires a basic understanding of Git, Heroku, Ruby and Rails.
+Creating your own Artful.ly OSE installation requires a basic understanding of Git, Heroku, Ruby and Rails.
 
 ## Dependencies
 
-You'll need the following apps/services to use Artfully
+You'll need the following apps/services to use Artful.ly OSE
 
 * Solr
 * MySQL
@@ -62,7 +62,7 @@ Run the migrations
 
 ## Running Locally
 
-If you intend to do any custom development or testing, go ahead and set up Artfully locally on your machine.  If you have no interest in this, feel free to skip ahead to Deployment to Heroku
+If you intend to do any custom development or testing, go ahead and set up Artful.ly OSE locally on your machine.  If you have no interest in this, feel free to skip ahead to Deployment to Heroku
     
 Open a rails console and run
 
@@ -76,7 +76,7 @@ Open `http://localhost:5000` in a browser
 
 ### Environment
 
-Artfully requires the following environment variables to be set if they aren't explicitly set in `config/environment.rb`
+Artful.ly OSE requires the following environment variables to be set if they aren't explicitly set in `config/environment.rb`
 
     BRAINTREE_MERCHANT_ID
     BRAINTREE_PUBLIC_KEY
@@ -90,13 +90,13 @@ Artfully requires the following environment variables to be set if they aren't e
 
 ### About delayed_job
 
-Artfully ships with `delayed_job` disabled.  If you do have a Heroku worker turned on, you'll want to enable delayed_jobs.
+Artful.ly OSE ships with `delayed_job` disabled.  If you do have a Heroku worker turned on, you'll want to enable delayed_jobs.
 
 To enable `delayed_job`, in `config/application.rb` change this line to read
 
     Delayed::Worker.delay_jobs = true
     
-__Please note__ that Artfully depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.
+__Please note__ that Artful.ly OSE depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.
 
 ### Update the mailer
 
@@ -136,7 +136,7 @@ If you didn't set environment variables in `config/environment.rb`, you'll need 
     
     heroku config:add BRAINTREE_MERCHANT_ID='...'
     
-If you have a Google Analytics account, you can set the environment variables `GA_ACCOUNT` and `GA_DOMAIN` to enable Google Analytics in Artfully.
+If you have a Google Analytics account, you can set the environment variables `GA_ACCOUNT` and `GA_DOMAIN` to enable Google Analytics in Artful.ly OSE.
 
 ### Create your first user
 
