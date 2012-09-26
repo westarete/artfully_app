@@ -14,7 +14,7 @@ An Open-source application to run your arts organization.  Features include:
 And coming soon...
 
 * Advanced patron searching
-* Mailchimp integration
+* [Mailchimp](http://mailchimp.com) integration
 
 # About
 
@@ -24,10 +24,10 @@ Creating your own Artful.ly OSE installation requires a basic understanding of G
 
 You'll need the following apps/services to use Artful.ly OSE
 
-* Solr
-* MySQL
-* Braintree
-* S3
+* [Solr](http://lucene.apache.org/solr/)
+* [MySQL](http://www.mysql.com)
+* [Braintree](https://www.braintreepayments.com)
+* [S3](http://aws.amazon.com/s3/)
 
 ## Prerequisites
 
