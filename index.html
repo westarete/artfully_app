@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Artfully Open Source Edition by fracturedatlas</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/fracturedatlas/artfully_app">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Artfully Open Source Edition</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/fracturedatlas/artfully_app/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/fracturedatlas/artfully_app/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Artful.ly Open Source Edition</h1>
+
+<p>Version 1.0.0.rc4</p>
+
+<p>An Open-source application to run your arts organization.  Features include:</p>
+
+<ul>
+<li>Free and paid ticketing on the web</li>
+<li>Patron tracking</li>
+<li>Patron importing and exporting</li>
+<li>Order tracking</li>
+<li>Door lists</li>
+<li>Box office</li>
+</ul><p>And coming soon...</p>
+
+<ul>
+<li>Advanced patron searching</li>
+<li>
+<a href="http://mailchimp.com">Mailchimp</a> integration</li>
+</ul><h1>About</h1>
+
+<p>Creating your own Artful.ly OSE installation requires a basic understanding of Git, Heroku, Ruby and Rails.</p>
+
+<h2>Dependencies</h2>
+
+<p>You'll need the following apps/services to use Artful.ly OSE</p>
+
+<ul>
+<li><a href="http://lucene.apache.org/solr/">Solr</a></li>
+<li><a href="http://www.mysql.com">MySQL</a></li>
+<li><a href="https://www.braintreepayments.com">Braintree</a></li>
+<li><a href="http://aws.amazon.com/s3/">S3</a></li>
+</ul><h2>Prerequisites</h2>
+
+<p>Make sure you have the following installed on your system</p>
+
+<ul>
+<li><a href="http://www.ruby-lang.org">Ruby</a></li>
+<li><a href="http://docs.rubygems.org/read/chapter/3/">Rubygems</a></li>
+<li><a href="http://rubyonrails.org/">Rails 3.2</a></li>
+<li><a href="https://github.com/heroku/heroku/">Heroku cli</a></li>
+<li><a href="http://git-scm.com/">Git</a></li>
+</ul><p>Also, before you begin you should set up your production MySQL database.</p>
+
+<h2>Clone the app</h2>
+
+<pre><code>git clone git@github.com:fracturedatlas/artfully_app.git
+cd artfully_app
+</code></pre>
+
+<h3>Setup</h3>
+
+<pre><code>gem install foreman
+bundle install
+</code></pre>
+
+<h2>Database</h2>
+
+<p>Update database.yml to point to your mysql database.  Specify a local database and a production database.</p>
+
+<p>Run the migrations</p>
+
+<pre><code>bundle exec rake artfully_ose_engine:install:migrations
+bundle exec rake db:migrate
+</code></pre>
+
+<h2>Running Locally</h2>
+
+<p>If you intend to do any custom development or testing, go ahead and set up Artful.ly OSE locally on your machine.  If you have no interest in this, feel free to skip ahead to Deployment to Heroku</p>
+
+<p>Open a rails console and run</p>
+
+<pre><code>User.create!({:email =&gt; "youradmin@example.com", :password =&gt; "your_strong_password", :password_confirmation =&gt; "your_strong_password" })
+</code></pre>
+
+<h3>Run</h3>
+
+<pre><code>foreman start
+</code></pre>
+
+<p>Open <code>http://localhost:5000</code> in a browser</p>
+
+<h3>Environment</h3>
+
+<p>Artful.ly OSE requires the following environment variables to be set if they aren't explicitly set in <code>config/environment.rb</code></p>
+
+<pre><code>BRAINTREE_MERCHANT_ID
+BRAINTREE_PUBLIC_KEY
+BRAINTREE_PRIVATE_KEY
+
+S3_BUCKET
+S3_ACCESS_KEY_ID
+S3_SECRET_ACCESS_KEY
+
+WEBSOLR_URL
+</code></pre>
+
+<h2>Deployment to Heroku</h2>
+
+<h3>About delayed_job</h3>
+
+<p>Artful.ly OSE ships with <code>delayed_job</code> disabled.  If you do have a Heroku worker turned on, you'll want to enable delayed_jobs.</p>
+
+<p>To enable <code>delayed_job</code>, in <code>config/application.rb</code> change this line to read</p>
+
+<pre><code>Delayed::Worker.delay_jobs = true
+</code></pre>
+
+<p><strong>Please note</strong> that Artful.ly OSE depends on delayed jobs for locking tickets while a patron is checking out.  Leaving delayed jobs disabled prevents tickets from being locked.  Checkout will still work, but tickets will not be reserved for a patron while he/she is checking out.</p>
+
+<h3>Sending email</h3>
+
+<p>Artful.ly OSE <strong>WILL NOT PROCESS TRANSACTIONS WITHOUT A VALID SMTP SETUP</strong> We will make this more flexible in a future release.</p>
+
+<p>A good option is to enable SendGrid.  SendGrid has a free usage tier which integrates with Heroku.  See the note in <code>Setup SendGrid</code> to enable SendGrid.  Artful.ly OSE will work with SendGrid without any modification necessary.</p>
+
+<p>Otherwise, you'll need to specify your smtp settings in <code>config/environments/production.rb</code> under <code>config.action_mailer.smtp_settings</code></p>
+
+<p>Finaly, regardless of smtp provider, <strong>YOU MUST</strong> edit the file <code>config/environments/production.rb</code> and change the value of <code>config.action_mailer.default_url_options</code> to match your hostname.</p>
+
+<pre><code>config.action_mailer.default_url_options={:host =&gt; 'myapp.herokuapp.com'}
+</code></pre>
+
+<p>or if you own your own domain</p>
+
+<pre><code>config.action_mailer.default_url_options={:host =&gt; 'www.myexampletheater.com'}
+</code></pre>
+
+<h3>Push</h3>
+
+<p>Follow the <a href="https://devcenter.heroku.com/articles/creating-apps">Heroku instructions</a> for creating an app</p>
+
+<pre><code>heroku apps:create myapp
+git add .
+git commit -m "Prepping push to Heroku"
+git push heroku master
+</code></pre>
+
+<h3>Setup SendGrid (Optional)</h3>
+
+<p>If you're using SendGrid to send email, enable the starter plan with the following command:</p>
+
+<pre><code>heroku addons:add sendgrid:starter
+</code></pre>
+
+<p>See the <a href="https://addons.heroku.com/sendgrid">SendGrid documentation</a> for more information.</p>
+
+<h3>Setup the production database</h3>
+
+<p>Before running this, you must have setup and configured a MySQL database.  If you database is on Amazon's RDS, you'll have to enable that plugin on Heroku by running</p>
+
+<pre><code>heroku addons:add amazon_rds
+heroku config:add DATABASE_URL=mysql2://username:password@url.ofyourdatabase.com/databaseName
+</code></pre>
+
+<p>Otherwise, make sure you have edited, committed, and pushed your database.yml file</p>
+
+<pre><code>heroku run bundle exec rake db:migrate
+</code></pre>
+
+<p>Please note that you must first have run and committed <code>bundle exec rake artfully_ose_engine:install:migrations</code> from the above steps</p>
+
+<h3>Set environment variables</h3>
+
+<p>If you didn't set environment variables in <code>config/environment.rb</code>, you'll need to set them on the heroku command line.  Run this command for each environment variable listed in "Environment"</p>
+
+<pre><code>heroku config:add BRAINTREE_MERCHANT_ID='...'
+</code></pre>
+
+<p>If you have a Google Analytics account, you can set the environment variables <code>GA_ACCOUNT</code> and <code>GA_DOMAIN</code> to enable Google Analytics in Artful.ly OSE.</p>
+
+<h3>Create your first user</h3>
+
+<p>This user will be the organization administrator.  In a Heroku console, run</p>
+
+<pre><code>User.create!({:email =&gt; "youradmin@example.com", :password =&gt; "your_strong_password", :password_confirmation =&gt; "your_strong_password" })
+</code></pre>
+
+<h3>Restart the app</h3>
+
+<pre><code>heroku restart
+</code></pre>
+
+<h3>Load your application</h3>
+
+<p>Go to <code>http://myapp.herokuapp.com</code> in a web browser</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/fracturedatlas">fracturedatlas</a> can be found on <a href="https://github.com/fracturedatlas/artfully_app">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
